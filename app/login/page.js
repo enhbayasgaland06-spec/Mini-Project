@@ -2,18 +2,20 @@
 
 import { useRouter } from "next/navigation"
 import { useState } from "react"
+import { useAuth } from "../context/AuthContext"
 
 export default function Login() {
     const [email, setEmail] = useState("")
     const [password, SetPassWord] = useState("")
     const [success, SetSuccess] = useState(false)
+    const {login} = useAuth()
     const router = useRouter()
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        console.log("Email:", email);
-        console.log("Password:", password);
+        login(email)
         SetSuccess(true)
+       
 
         // 2 секундын дараа users руу шилж
         setTimeout(() => {
